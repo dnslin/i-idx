@@ -15,7 +15,7 @@ export const Hero = () => {
           radius={370}
           innerRadius={300}
           duration={20}
-          speed={2}
+          speed={1.5}
           iconSize={50}
           centerContent={
             <ThreeDCard className="w-[400px] h-[400px] flex items-center justify-center">

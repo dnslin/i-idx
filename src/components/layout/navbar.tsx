@@ -87,10 +87,10 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center">
+        <div className="flex h-16 items-center justify-between">
           {/* 头像和昵称 */}
           <motion.div
-            className="flex items-center space-x-3"
+            className="flex items-center space-x-3 w-[180px]"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -113,8 +113,8 @@ export function Navbar() {
             </a>
           </motion.div>
 
-          {/* 导航链接 - 使用flex-1确保它占据剩余空间 */}
-          <div className="hidden md:flex flex-1 items-center justify-center space-x-6">
+          {/* 导航链接 - 在移动端隐藏 */}
+          <div className="hidden md:flex items-center justify-center space-x-6">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -156,9 +156,12 @@ export function Navbar() {
             })}
           </div>
 
-          {/* 社交媒体链接 - 使用固定宽度容器 */}
-          <div className="w-[180px] flex justify-end">
-            <FloatingDock items={socialLinks} />
+          {/* 社交媒体链接 - 移动端保持显示 */}
+          <div className="flex items-center w-[180px] justify-end">
+            <FloatingDock
+              items={socialLinks}
+              className="scale-90 md:scale-100"
+            />
           </div>
         </div>
       </div>
