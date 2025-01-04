@@ -1,40 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+布局参考:<https://www.qzq.at/>
+动画效果参考 <https://www.awwwards.com/> <https://monolithstudio.com/>
 
-## Getting Started
+组件库使用：
+Magic UI
+<https://magicui.design/>
+Aceternity UI
+<https://ui.aceternity.com/>
+shadcn/ui
+<https://ui.shadcn.com/>
+图标库使用
+tabler-icons
+<https://tablericons.com/>
 
-First, run the development server:
+## 项目结构
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+src/
+├── app/                   # Next.js 13+ App Router
+├── components/           # 可重用组件
+│   ├── ui/              # 基础UI组件
+│   ├── layout/          # 布局相关组件
+│   ├── sections/        # 页面区块组件
+│   └── shared/          # 共享业务组件
+├── hooks/               # 自定义Hooks
+├── lib/                 # 工具函数和配置
+├── styles/              # 全局样式
+└── types/               # TypeScript类型定义
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 开发任务看板
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Phase 1: 项目基础架构搭建
+- [x] 1.1 项目目录结构规划与模块化设计
+- [x] 1.2 基础配置文件设置
+- [ ] 1.3 UI组件库集成与主题配置
+- [x] 1.4 全局样式与布局基础设置
+- [x] 1.5 工具函数与通用hooks封装
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Phase 2: 核心布局开发
+- [ ] 2.1 参考qzq.at实现响应式布局框架
+- [x] 2.2 导航栏组件开发
+- [ ] 2.3 Hero区域布局与动效
+- [ ] 2.4 内容区域网格布局
+- [ ] 2.5 页脚组件开发
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Phase 3: 功能模块开发
+- [ ] 3.1 个人信息展示模块
+- [ ] 3.2 技能展示模块
+- [ ] 3.3 项目展示模块
+- [ ] 3.4 联系方式模块
+- [ ] 3.5 博客文章模块(可选)
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Phase 4: 动效与交互优化
+- [ ] 4.1 页面过渡动画
+- [ ] 4.2 滚动动效优化
+- [ ] 4.3 hover交互效果
+- [ ] 4.4 加载动画优化
+- [ ] 4.5 性能优化与测试
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+### Phase 5: 部署与优化
+- [ ] 5.1 SEO优化
+- [ ] 5.2 性能指标优化
+- [ ] 5.3 跨浏览器兼容性测试
+- [ ] 5.4 部署配置
+- [ ] 5.5 文档完善
