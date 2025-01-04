@@ -18,11 +18,11 @@ export const Hero = () => {
           speed={1.5}
           iconSize={50}
           centerContent={
-            <ThreeDCard className="w-[400px] h-[400px] flex items-center justify-center">
-              <div className="p-8 flex flex-col items-center justify-center space-y-6">
+            <ThreeDCard className="w-[350px] h-[400px] flex items-center justify-center">
+              <div className="p-6 flex flex-col items-center justify-center space-y-6">
                 <MorphingText
                   words={["林祁", "dnslin"]}
-                  className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
+                  className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50"
                 />
                 <FlipWords
                   words={[
@@ -30,7 +30,7 @@ export const Hero = () => {
                     "UI/UX Enthusiast",
                     "Open Source Contributor",
                   ]}
-                  className="text-xl text-muted-foreground"
+                  className="text-lg text-muted-foreground"
                 />
               </div>
             </ThreeDCard>
