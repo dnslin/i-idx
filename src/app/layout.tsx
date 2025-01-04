@@ -6,8 +6,9 @@ import { Navbar } from "@/components/layout/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "个人主页",
-  description: "基于Next.js构建的个人主页",
+  title: "DnsLin OneIndex",
+  description:
+    "The best time to plant a tree is 20 years ago. The second-best time is now",
 };
 
 export default function RootLayout({
