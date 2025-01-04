@@ -12,10 +12,12 @@ import {
   IconDeviceGamepad2,
   IconMusic,
   IconBook,
+  IconBrandTelegram,
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FloatingDock } from "@/components/ui/floating-dock";
 
 const navigation = [
   { name: "Favorites", href: "#favorites", icon: IconHeart },
@@ -24,17 +26,35 @@ const navigation = [
   { name: "Game", href: "#game", icon: IconDeviceGamepad2 },
   { name: "Music", href: "#music", icon: IconMusic },
   { name: "Books", href: "#books", icon: IconBook },
+  { name: "Telegram", href: "#telegram", icon: IconBrandTelegram },
 ];
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com", icon: IconBrandGithub },
-  { name: "Twitter", href: "https://twitter.com", icon: IconBrandTwitter },
   {
-    name: "Instagram",
-    href: "https://instagram.com",
-    icon: IconBrandInstagram,
+    title: "GitHub",
+    href: "https://github.com",
+    icon: <IconBrandGithub className="h-4 w-4" />,
   },
-  { name: "Bilibili", href: "https://bilibili.com", icon: IconBrandBilibili },
+  {
+    title: "Twitter",
+    href: "https://twitter.com",
+    icon: <IconBrandTwitter className="h-4 w-4" />,
+  },
+  {
+    title: "Instagram",
+    href: "https://instagram.com",
+    icon: <IconBrandInstagram className="h-4 w-4" />,
+  },
+  {
+    title: "Bilibili",
+    href: "https://bilibili.com",
+    icon: <IconBrandBilibili className="h-4 w-4" />,
+  },
+  {
+    title: "Telegram",
+    href: "https://t.me/dnslin",
+    icon: <IconBrandTelegram className="h-4 w-4" />,
+  },
 ];
 
 const transition = {
@@ -49,7 +69,6 @@ const transition = {
 export function Navbar() {
   const [active, setActive] = useState<string | null>(null);
 
-  // 平滑滚动到锚点
   const scrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -68,7 +87,7 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-16 items-center">
           {/* 头像和昵称 */}
           <motion.div
             className="flex items-center space-x-3"
@@ -94,8 +113,8 @@ export function Navbar() {
             </a>
           </motion.div>
 
-          {/* 导航链接 */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* 导航链接 - 使用flex-1确保它占据剩余空间 */}
+          <div className="hidden md:flex flex-1 items-center justify-center space-x-6">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -137,24 +156,9 @@ export function Navbar() {
             })}
           </div>
 
-          {/* 社交媒体链接 */}
-          <div className="flex items-center space-x-4">
-            {socialLinks.map((item) => {
-              const Icon = item.icon;
-              return (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Icon size={20} />
-                </motion.a>
-              );
-            })}
+          {/* 社交媒体链接 - 使用固定宽度容器 */}
+          <div className="w-[180px] flex justify-end">
+            <FloatingDock items={socialLinks} />
           </div>
         </div>
       </div>
