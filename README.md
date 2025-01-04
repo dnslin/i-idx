@@ -19,8 +19,14 @@ src/
 ├── app/                   # Next.js 13+ App Router
 ├── components/           # 可重用组件
 │   ├── ui/              # 基础UI组件
+│   │   ├── orbiting-circles.tsx    # 背景动画组件
+│   │   ├── morphing-text.tsx       # 文字变形动画
+│   │   ├── flip-words.tsx          # 文字翻转动画
+│   │   └── three-d-card.tsx        # 3D卡片效果
 │   ├── layout/          # 布局相关组件
+│   │   └── navbar.tsx             # 导航栏组件
 │   ├── sections/        # 页面区块组件
+│   │   └── hero.tsx               # 首页Hero区块
 │   └── shared/          # 共享业务组件
 ├── hooks/               # 自定义Hooks
 ├── lib/                 # 工具函数和配置
