@@ -13,11 +13,11 @@ import { useRef, useState } from "react";
 
 // 为不同的社交媒体定义颜色
 const socialColors: { [key: string]: string } = {
-  GitHub: "hover:text-[#24292e]",
-  Twitter: "hover:text-[#1DA1F2]",
-  Instagram: "hover:text-[#E4405F]",
-  Bilibili: "hover:text-[#00A1D6]",
-  Telegram: "hover:text-[#0088cc]",
+  GitHub: "group-hover:text-[#24292e]",
+  Twitter: "group-hover:text-[#1DA1F2]",
+  Instagram: "group-hover:text-[#E4405F]",
+  Bilibili: "group-hover:text-[#00A1D6]",
+  Telegram: "group-hover:text-[#0088cc]",
 };
 
 export const FloatingDock = ({
@@ -73,9 +73,9 @@ function IconContainer({
 
   // 优化动画参数
   const width = useSpring(widthTransform, {
-    mass: 0.2, // 增加质量使动画更平滑
-    stiffness: 200, // 增加刚度使响应更快
-    damping: 15, // 增加阻尼使动画更稳定
+    mass: 0.2,
+    stiffness: 200,
+    damping: 15,
     restDelta: 0.001,
   });
   const height = useSpring(heightTransform, {
@@ -88,13 +88,13 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="group">
       <motion.div
         ref={ref}
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center relative"
+        className="aspect-square rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center relative transition-colors duration-200 group-hover:bg-gray-200 dark:group-hover:bg-neutral-700"
       >
         <AnimatePresence>
           {hovered && (
