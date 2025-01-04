@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
@@ -13,6 +15,8 @@ import {
   IconBook,
 } from "@tabler/icons-react";
 import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const navigation = [
   { name: "Favorites", href: "/favorites", icon: IconHeart },
@@ -34,15 +38,30 @@ const socialLinks = [
   { name: "Bilibili", href: "https://bilibili.com", icon: IconBrandBilibili },
 ];
 
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
+};
+
 export function Navbar() {
+  const [active, setActive] = useState<string | null>(null);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* 头像和昵称 */}
-          <div className="flex items-center space-x-3">
+          <motion.div
+            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Link href="/" className="flex items-center space-x-3">
-              <div className="relative h-8 w-8 overflow-hidden rounded-full">
+              <div className="relative h-8 w-8 overflow-hidden rounded-full border-2 border-primary/20">
                 <Image
                   src="/avatar.jpg"
                   alt="avatar"
@@ -50,25 +69,50 @@ export function Navbar() {
                   className="object-cover"
                 />
               </div>
-              <span className="text-lg font-medium">dnslin</span>
+              <span className="text-lg font-medium text-foreground">
+                dnslin
+              </span>
             </Link>
-          </div>
+          </motion.div>
 
           {/* 导航链接 */}
           <div className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
-                <Link
+                <div
                   key={item.name}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary"
-                  )}
+                  onMouseEnter={() => setActive(item.name)}
+                  onMouseLeave={() => setActive(null)}
+                  className="relative"
                 >
-                  <Icon size={18} />
-                  <span>{item.name}</span>
-                </Link>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary",
+                      active === item.name
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    <Icon size={18} />
+                    <span>{item.name}</span>
+                  </Link>
+                  {active === item.name && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={transition}
+                      className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2"
+                    >
+                      <div className="bg-background/80 backdrop-blur-md rounded-lg overflow-hidden border border-border shadow-lg p-2">
+                        <span className="text-sm whitespace-nowrap text-foreground">
+                          {item.name} Content
+                        </span>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -78,15 +122,17 @@ export function Navbar() {
             {socialLinks.map((item) => {
               const Icon = item.icon;
               return (
-                <a
+                <motion.a
                   key={item.name}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <Icon size={20} />
-                </a>
+                </motion.a>
               );
             })}
           </div>
