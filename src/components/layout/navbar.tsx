@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import {
   IconBrandGithub,
   IconBrandTwitter,
@@ -15,18 +14,50 @@ import {
   IconBrandTelegram,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { FloatingDock } from "@/components/ui/floating-dock";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import ReactDOMServer from "react-dom/server";
+import * as React from "react";
 
 const navigation = [
-  { name: "Favorites", href: "#favorites", icon: IconHeart },
-  { name: "Influencer", href: "#influencer", icon: IconUsers },
-  { name: "Code", href: "#code", icon: IconCode },
-  { name: "Game", href: "#game", icon: IconDeviceGamepad2 },
-  { name: "Music", href: "#music", icon: IconMusic },
-  { name: "Books", href: "#books", icon: IconBook },
-  { name: "Telegram", href: "#telegram", icon: IconBrandTelegram },
+  {
+    id: 1,
+    name: "Favorites",
+    href: "#favorites",
+    icon: IconHeart,
+    designation: "收藏夹",
+  },
+  {
+    id: 2,
+    name: "Influencer",
+    href: "#influencer",
+    icon: IconUsers,
+    designation: "影响力",
+  },
+  { id: 3, name: "Code", href: "#code", icon: IconCode, designation: "代码" },
+  {
+    id: 4,
+    name: "Game",
+    href: "#game",
+    icon: IconDeviceGamepad2,
+    designation: "游戏",
+  },
+  {
+    id: 5,
+    name: "Music",
+    href: "#music",
+    icon: IconMusic,
+    designation: "音乐",
+  },
+  { id: 6, name: "Books", href: "#books", icon: IconBook, designation: "书籍" },
+  {
+    id: 7,
+    name: "Telegram",
+    href: "#telegram",
+    icon: IconBrandTelegram,
+    designation: "电报",
+  },
 ];
 
 const socialLinks = [
@@ -57,23 +88,23 @@ const socialLinks = [
   },
 ];
 
-const transition = {
-  type: "spring",
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
-
 export function Navbar() {
-  const [active, setActive] = useState<string | null>(null);
-
   const scrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const handleNavigationClick = (href: string) => {
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
@@ -114,46 +145,23 @@ export function Navbar() {
           </motion.div>
 
           {/* 导航链接 - 在移动端隐藏 */}
-          <div className="hidden md:flex items-center justify-center space-x-6">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.name}
-                  onMouseEnter={() => setActive(item.name)}
-                  onMouseLeave={() => setActive(null)}
-                  className="relative"
-                >
-                  <a
-                    href={item.href}
-                    onClick={(e) => scrollToSection(e, item.href)}
-                    className={cn(
-                      "flex items-center space-x-1 text-sm font-medium transition-colors hover:text-primary",
-                      active === item.name
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    <Icon size={18} />
-                    <span>{item.name}</span>
-                  </a>
-                  {active === item.name && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.85, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={transition}
-                      className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2"
-                    >
-                      <div className="bg-background/80 backdrop-blur-md rounded-lg overflow-hidden border border-border shadow-lg p-2">
-                        <span className="text-sm whitespace-nowrap text-foreground">
-                          {item.name} Content
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              );
-            })}
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="relative">
+              <AnimatedTooltip
+                items={navigation.map((item) => ({
+                  id: item.id,
+                  name: item.name,
+                  designation: item.designation,
+                  href: item.href,
+                  image: `data:image/svg+xml,${encodeURIComponent(
+                    ReactDOMServer.renderToString(
+                      React.createElement(item.icon, { size: 24 })
+                    )
+                  )}`,
+                }))}
+                onClick={handleNavigationClick}
+              />
+            </div>
           </div>
 
           {/* 社交媒体链接 - 移动端保持显示 */}
