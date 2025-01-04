@@ -135,7 +135,14 @@ export function Navbar() {
                   src="/avatar.jpg"
                   alt="avatar"
                   fill
+                  sizes={`
+                    (max-width: 640px) 40px,
+                    (max-width: 768px) 48px,
+                    (max-width: 1024px) 56px,
+                    64px
+                  `}
                   className="object-cover"
+                  priority
                 />
               </div>
               <span className="text-lg font-medium text-foreground">

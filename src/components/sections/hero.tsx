@@ -63,7 +63,7 @@ export const Hero = () => {
             alt="github"
             width={48}
             height={48}
-            className="object-contain dark:invert"
+            className="object-contain dark:invert w-auto h-auto"
           />
 
           {/* 外圈图标 - 技术栈 */}
@@ -95,7 +95,7 @@ export const Hero = () => {
               width={100}
               height={100}
               className="rounded-full object-cover grayscale"
-              priority
+              loading="lazy"
             />
           </div>
           <Image
@@ -103,7 +103,7 @@ export const Hero = () => {
             alt="react"
             width={48}
             height={48}
-            className="object-contain"
+            className="object-contain w-auto h-auto"
           />
           <Image
             src="/svg/nextjs_icon_dark.svg"
