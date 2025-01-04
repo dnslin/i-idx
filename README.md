@@ -1,4 +1,4 @@
-布局参考:<https://www.qzq.at/>
+布局参考: <https://www.qzq.at/>
 动画效果参考 <https://www.awwwards.com/> <https://monolithstudio.com/>
 
 组件库使用：
