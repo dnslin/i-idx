@@ -42,7 +42,6 @@ const IconWrapper = ({ className, style, children }: IconWrapperProps) => {
 
   const width = isAvatar ? getSize(childElement.props.className, "w-") : null;
   const height = isAvatar ? getSize(childElement.props.className, "h-") : null;
-  console.log(width, height);
 
   return (
     <div
